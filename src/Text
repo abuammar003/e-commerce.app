@@ -1,0 +1,978 @@
+
+// <-------------------------Card------------------------>
+
+// import React, {useState} from "react";
+// import { Link } from "react-router-dom";
+
+// const ShoppingCard = ({ id, image, title, orignalPrice, discountPrice }) => {
+
+//   const [productValue, setProductValue] = useState(0);
+
+//   function increment() {
+//     setProductValue(productValue + 1);
+//   }
+//   function dicrement() {
+//     if (productValue > 0) {
+//       setProductValue(productValue - 1);
+//       return;
+//     }
+//   }
+
+//   return (
+//     <>
+//       <div className="p-3 border text-center justify-center min-h-[60vh]">
+//         <Link to={`/listing/${id}`}>
+//           <div>
+//             <img src={image} alt={title} />
+//           </div>
+//           <div>
+//             <h1 className="text-xl">{title}</h1>
+//             <div className="flex gap-1 items-center justify-center align-center">
+//               <span className="text-xl">${orignalPrice}</span>
+//               <del>${discountPrice}</del>
+//             </div>
+//           </div>
+//         </Link>
+
+//         {productValue === 0 ? (
+//           <Link to={`/cart/${id}`}>
+//             <button
+//               className="border bg-green-700 py-2 px-4 rounded-lg mt-5"
+//               onClick={increment}
+//             >
+//               Buy Now
+//             </button>
+//           </Link>
+//         ) : (
+//           <div className="ml-20">
+//             <div className="flex items-center justify-center rounded-lg w-40 py-4 mt-4 ">
+//               <button
+//                 className="border py-1 px-4 rounded-lg text-2xl"
+//                 onClick={dicrement}
+//               >
+//                 -
+//               </button>
+//               <h3 className="mx-2 text-xl">{productValue}</h3>
+//               <button
+//                 className="border py-1 px-4 rounded-lg text-2xl"
+//                 onClick={increment}
+//               >
+//                 +
+//               </button>
+//             </div>
+//           </div>
+//         )}
+//       </div>
+//     </>
+//   );
+// };
+
+// export default ShoppingCard;
+
+
+// <--------------------------Card2--------------------------->
+// import React, { useEffect, useState } from "react";
+// import { Link } from "react-router-dom";
+
+// const ShoppingCard = ({ product }) => {
+//   const [cartItems, setCartItems] = useState([]);
+
+//   useEffect(() => {
+//     const storeCartItem = JSON.parse(localStorage.getItem("cartItems")) || [];
+//     setCartItems(storeCartItem);
+//   }, []);
+
+//   useEffect(() => {
+//     localStorage.setItem("cartItems", JSON.stringify(cartItems));
+//   }, [cartItems]);
+
+//   const handleAddToCart = (product) => {
+//     setCartItems([
+//       ...cartItems,
+//       {
+//         id: product.id,
+//         name: product.title,
+//         image: product.thumbnail,
+//         quantity: 1,
+//         price: product.price,
+//         discount: product.discountPercentage,
+//       },
+//     ]);
+//   };
+//   console.log(cartItems);
+//   // console.log(product)
+
+//   return (
+//     <div className="py-2 px-3 border text-center justify-center h-auto">
+//       <Link to={`/listing/${product.id}`}>
+//         <div className="flex-col items-center justify-center">
+//           <img src={product.thumbnail} alt={product.title} className="h-48" />
+//           <h1 className="text-xl">{product.title}</h1>
+//         </div>
+//         <div className="flex gap-1 items-center justify-center">
+//           <span className="text-xl">${product.price}</span>
+//           <del>{product.discountPercentage}%</del>
+//         </div>
+//       </Link>
+
+//       {[].length === 0 ? (
+//         <button
+//           className="border bg-green-700 py-2 px-4 rounded-lg mt-5"
+//           onClick={() => handleAddToCart(product)}
+//         >
+//           Add to Cart
+//         </button>
+//       ) : (
+//         <div>
+//           <div className="flex items-center justify-center rounded-lg py-4 mt-4">
+//             <button
+//               className="border py-1 px-4 rounded-lg text-2xl"
+//               onClick={decrement}
+//             >
+//               -
+//             </button>
+//             <h3 className="mx-2 text-xl">{productValue}</h3>
+//             <button
+//               className="border py-1 px-4 rounded-lg text-2xl"
+//               onClick={increment}
+//             >
+//               +
+//             </button>
+//           </div>
+//         </div>
+//       )}
+//     </div>
+//   );
+// };
+
+// export default ShoppingCard;
+
+
+
+
+// <-------------------------Listing1------------------------>
+// import React from "react";
+// import { useProduct } from "../context/product";
+// import ShoppingCard from "../components/card";
+// import ShoppingFooter from "../components/footer";
+
+// const ShoppingListing = (filterProductFromCart) => {
+//   const { products, isLoading, isError } = useProduct();
+//   if (isLoading) <div>Loading...</div>;
+//   if (isError) <div>{isError}</div>;
+
+  
+
+//   return (
+//     <div>
+//       <div className="max-w-[80rem] mx-auto grid grid-cols-5 gap-8 my-8">
+//         {products.map((product) => {
+//              const cartItems =
+//               JSON.parse(localStorage.getItem("cartItem")) || [];
+//             const filterProductFromCart = cartItems.find(
+//               (item) => item.id === product.id
+//             );
+//           return (
+//             <ShoppingCard
+//               key={product.id}
+//               product={product}
+//               filterProductFromCart={filterProductFromCart}
+//             // image={product.thumbnail}
+//             // title={product.title}
+//             // originalPrice={product.price}
+//             // discountPrice={product.discountPercentage}
+//             />
+            
+//           );
+//         })}
+//       </div>
+//       <ShoppingFooter />
+//     </div>
+//   );
+// };
+
+// export default ShoppingListing;
+
+
+
+
+
+
+// <-------------------------Detail1------------------------>
+// import React from "react";
+// import { Link } from "react-router-dom";
+// import { useParams } from "react-router";
+// import { useProduct } from "../context/product";
+// import ShoppingCard from "../components/card";
+// import { RxCrossCircled } from "react-icons/rx";
+
+// const ShoppingDetail = () => {
+//   const { id } = useParams();
+//   console.log(id);
+//   const { products } = useProduct();
+//   console.log(products[id]);
+
+//   const productId = Number(id);
+
+//   const product = products.find((product) => product.id === productId);
+//   // const product = products.find((product) => product.id === parseInt(id));
+
+//   if (!product) {
+//     return <div className="text-3xl text-center mt-60">Product Not Found!</div>;
+//   }
+
+//   return (
+//     // <div className="min-h-screen">
+//     //   <h1 className="text-3xl mx-2 my-5">Product Detail</h1>
+//     //   <div className="border">
+//     //     <span className="absolute top-48 right-[36rem]">
+//     //       <Link to="/listing">
+//     //         <RxCrossCircled className="text-xl text-black cursor-pointer" />
+//     //       </Link>
+//     //     </span>
+//     //     <div className="max-w-[50rem] mx-auto my-8 flex items-center justify-center">
+//     //       <ShoppingCard
+//     //         className="text-center"
+//     //         id={product.id}
+//     //         image={product.thumbnail}
+//     //         title={product.title}
+//     //         orignalPrice={product.price}
+//     //         // discountPrice={product.discountPercentage}
+//     //       />
+//     //     </div>
+//           {/* <ShoppingCard product={product} /> */}
+//     //   </div>
+//     // </div>
+//   );
+// };
+
+// export default ShoppingDetail;
+
+
+
+
+
+
+// <-------------------------Cart------------------------>
+
+// import React, { useState } from 'react'
+// import { useParams } from "react-router";
+// import { useProduct } from "../context/product";
+// import ShoppingCard from "../components/card";
+
+// const ShoppingCart = () => {
+
+//   const { id } = useParams();
+//   console.log(id);
+//   const { products } = useProduct();
+//   console.log(products[id]);
+
+//   const productId = Number(id);
+
+//   const product = products.find((product) => product.id === productId);
+
+//   if (!product) {
+//     return <div className="text-3xl text-center mt-60">Product Not Found!</div>;
+//   }
+
+//   return (
+//     <div className="min-h-screen">
+//       <h1 className="text-3xl mx-2 my-5">Your Products</h1>
+//       <div className="border p-8 ">
+//         {ShoppingCard.length >= 1 ? (
+//           <div className="max-w-[50rem] flex items-center justify-center">
+//             <ShoppingCard
+//               className=""
+//               id={product.id}
+//               image={product.thumbnail}
+//               title={product.title}
+//               orignalPrice={product.price}
+//               discountPrice={product.discountPercentage}
+//             />
+
+//           </div>
+//         ) : (
+//           <h1>Product Not Found!</h1>
+//         )}
+
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default ShoppingCart;
+
+
+// <------------------------Cart Main----------------------------->
+
+// import React, { useEffect, useState } from "react";
+// import { useParams } from "react-router";
+// import { useProduct } from "../context/product";
+// import ShoppingCard from "../components/card";
+
+// const AddToCart = () => {
+//   const { id } = useParams();
+//   const { products } = useProduct();
+//   const productId = Number(id);
+//   const product = products.find((product) => product.id === productId);
+
+//   const [cart, setCart] = useState([]);
+
+//   useEffect(() => {
+//     const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
+//     setCart(storedCart);
+//   }, []);
+
+//   useEffect(() => {
+//     localStorage.setItem("cart", JSON.stringify(cart));
+//   }, [cart]);
+
+//   const addToCart = (productToAdd) => {
+//     setCart((prev) => {
+//       const existingProduct = prev.find((item) => item.id === productToAdd.id);
+//       if (existingProduct) {
+//         return prev.map((item) =>
+//           item.id === productToAdd.id
+//             ? { ...item, quantity: item.quantity + productToAdd.quantity }
+//             : item
+//         );
+//       }
+//       return [...prev, productToAdd];
+//     });
+//   };
+
+//   const cancelOrder = (id) => {
+//     setCart((prev) => prev.filter((item) => item.id !== id));
+//     alert("Cancel Order!");
+//   };
+
+//   const calculateTotal = (price, quantity) => {
+//     return price * quantity;
+//   };
+
+//   // if (!product) {
+//   //   return <div className="text-3xl text-center mt-60">Product Not Found!</div>;
+//   // }
+
+//   return (
+//     // <div className="min-h:100vh;">
+//     //   <h1 className="text-3xl mx-2 my-5">Your Products</h1>
+//     //   <div className="border p-8">
+       
+//     //       {cart.length > 0 ? (
+//     //         <div className="min-w-[60rem] flex flex-col items-center">
+//     //           {cart.map((item) => (
+//     //             <div
+//     //               key={item.id}
+//     //               className="min-w-[60rem] flex justify-between items-center mb-4 border p-8"
+//     //             >
+//     //               <div className="flex items-center justify-between">
+//     //                 <img
+//     //                   src={item.image}
+//     //                   alt={item.title}
+//     //                   className="w-48 h-48 mr-4"
+//     //                 />
+//     //                 <div>
+//     //                   <h3 className="text-xl">{item.title}</h3>
+//     //                   <span className="text-lg">
+//     //                     ${item.originalPrice} x {item.quantity}
+//     //                   </span>
+//     //                   <h4 className="text-lg font-bold">
+//     //                     Total: $
+//     //                     {calculateTotal(item.originalPrice, item.quantity)}
+//     //                   </h4>
+//     //                 </div>
+//     //               </div>
+//     //               <button
+//     //                 onClick={() => cancelOrder(item.id)}
+//     //                 className="mt-4 border bg-red-500 text-white py-2 px-4 rounded"
+//     //               >
+//     //                 Cancel Order
+//     //               </button>
+//     //             </div>
+//     //           ))}
+//     //         </div>
+//     //       ) : (
+//     //         <div className="text-lg text-center">Your cart is empty!</div>
+//     //       )}
+     
+
+//     //     <div className="flex justify-center p-5">
+//     //       <ShoppingCard
+//     //         id={product.id}
+//     //         image={product.thumbnail}
+//     //         title={product.title}
+//     //         originalPrice={product.price}
+//     //         discountPrice={product.discountPercentage}
+//     //         addToCart={addToCart}
+//     //       />
+//     //     </div>
+//     //   </div>
+//     // </div>
+//      <div className="flex justify-center p-5">
+//           <ShoppingCard
+//             id={product.id}
+//             image={product.thumbnail}
+//             title={product.title}
+//             originalPrice={product.price}
+//             discountPrice={product.discountPercentage}
+//             addToCart={addToCart}
+//           />
+//       </div>
+//   );
+// };
+
+// export default AddToCart;
+
+
+
+
+
+
+// Newest Listing UI ▶
+{/* {Object.keys(sortedProducts).map((category) => (
+        <div key={category} className="my-8">
+          <div className="border p-4 pb-8 rounded-lg">
+            <div className="flex justify-between items-center mb-6">
+              <h2
+                className="text-3xl capitalize font-semibold cursor-pointer"
+                onClick={() => navigate(`/category/${category}`)}
+              >
+                {category}
+              </h2>
+              <h3
+                className="text-xl text-violet-400 underline cursor-pointer"
+                onClick={() => navigate(`/category/${category}`)}
+              >
+                See More
+              </h3>
+            </div>
+            <div className="grid grid-cols-5 gap-8">
+              {sortedProducts[category].map((product) => {
+                const cartItems =
+                  JSON.parse(localStorage.getItem("cartItem")) || [];
+                const filterProductFromCart = cartItems.find(
+                  (item) => item.id === product.id
+                );
+
+                return (
+                  <ShoppingCard
+                    key={product.id}
+                    product={product}
+                    filterProductFromCart={filterProductFromCart}
+                  />
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      ))}
+      <ShoppingFooter /> */}
+
+
+
+
+
+
+      
+//       <------------------Listing 2 ------------------------>
+//       import React from "react";
+// import { useProduct } from "../context/product";
+// import ShoppingCard from "../components/card";
+
+
+// export default function Listing() {
+//   const { products} = useProduct();
+
+//   const filterCategory = products.map((prod) => {
+//     return prod.category;
+//   });
+ 
+//   const categoryList = [...new Set(filterCategory)];
+
+
+
+//   return (
+//     <div>
+//       {categoryList.map((category) => {
+//         return (
+//           <div key={category} className="mb-4 p-6 border">
+//             <div className="text-2xl capitalize font-semibold">{category}</div>
+            
+//             {/* {products.map(
+//               (product) =>
+//                 product.category === category && 
+//               <div>
+//                 <img src={product.thumbnail} alt={product.title} className="h-48 cursor-pointer" />
+//                 <h1>{product.title}</h1>
+//               </div>
+//               )} */}
+
+
+//              {/* {products.map((product) =>{
+//                  <ShoppingCard
+//                     //  key={product.id}
+//                      product={product}
+//                      // filterCategory={filterCategory}
+//                  />
+//                })}    */}
+
+
+//               {products.filter((product) => product.category === category).map((product) => (
+//                 <ShoppingCard key={product.id} product={product} />
+//               ))}
+
+//           </div>
+//         )
+//       })}
+//     </div>
+//   );
+// }
+
+
+
+
+// <---------------------Home Without Responsive----------------->
+// import React from "react";
+// import ShoppingBanner from "../components/banner";
+// import ShoppingCard from "../components/card";
+// import { useProduct } from "../context/product";
+// import { Loader } from "lucide-react";
+// import ShoppingFooter from "../components/footer";
+// import { useCart } from "../context/CartContext";
+
+// const ShoppingHome = () => {
+//   const { products, isLoading, isError } = useProduct();
+//   if (isLoading) <div>Loading...</div>;
+//   if (isError) <div>{isError}</div>;
+
+  
+//   return (
+//     <div>
+//       <ShoppingBanner />
+//       <div>
+//         <div className="max-w-[80rem] mx-auto grid grid-cols-5 gap-6 my-8">
+//           {products.slice(0, 10).map((product) => {
+//             return <ShoppingCard product={product} key={product.id} />;
+//           })}
+//         </div>
+//       </div>
+//       <ShoppingFooter />
+//     </div>
+//   );
+// };
+
+// export default ShoppingHome;
+
+
+
+
+
+// <---------------------Card without Responsive---------------------------->
+// import React, { useState } from "react";
+// import { Link, useNavigate } from "react-router-dom";
+// import { useCart } from "../context/CartContext";
+// import { MdRemoveShoppingCart } from "react-icons/md";
+
+// const ShoppingCard = ({ product, filterProductFromCart }) => {
+//   const { cartItems, handleAddToCart, handleRemoveFromCart } = useCart();
+//   const quantity = cartItems.find((item) => item.id === product.id);
+//   const navigate = useNavigate();
+
+//   return (
+//     <div
+//       className="py-4 px-4 border text-center rounded-lg shadow-sm hover:shadow-lg transition-all h-auto"
+//       onClick={() => navigate(`/listing/${product.id}`)}
+//     >
+//       <div className="flex flex-col justify-between h-full">
+//         <div className="flex flex-col items-center mb-4">
+//           <img
+//             src={product.thumbnail}
+//             alt={product.title}
+//             className="h-48 cursor-pointer w-auto object-contain mb-2"
+//           />
+//           <h1 className="text-xl">{product.title.slice(0, 15)}</h1>
+//         </div>
+//         <div className="flex gap-1 items-center justify-center">
+//           <span className="text-xl">${product.price}</span>
+//           <del className="text-sm">{product.discountPercentage}%</del>
+//         </div>
+//       </div>
+
+//       {quantity?.quantity > 0 ? (
+//         <div className="px-1 flex justify-center mt-5 items-center">
+//           <div className="flex justify-around py-0.5 rounded items-cente bg-green-600">
+//             <button
+//               className="px-2 text-xl pb-0.5 rounded text-white"
+//               onClick={(e) => {
+//                 e.preventDefault();
+//                 e.stopPropagation();
+//                 handleRemoveFromCart(product);
+//               }}
+//             >
+//               -
+//             </button>
+//             <span className="items-center rounded text-xl px-2 bg-white">
+//               {quantity?.quantity}
+//             </span>
+//             <button
+//               className="px-2 text-xl pb-0.5 rounded text-white"
+//               onClick={(e) => {
+//                 e.preventDefault();
+//                 e.stopPropagation();
+//                 handleAddToCart(product);
+//               }}
+//             >
+//               +
+//             </button>
+//           </div>
+//         </div>
+//       ) : (
+//         <button
+//           className="px-3 py-1 mt-5 rounded-lg bg-green-600 text-white"
+//           onClick={(e) => {
+//             e.preventDefault();
+//             e.stopPropagation();
+//             handleAddToCart(product);
+//           }}
+//         >
+//           Add To Cart
+//         </button>
+//       )}
+//     </div>
+//   );
+// };
+
+// export default ShoppingCard;
+
+
+
+
+// <----------------------------Footer without Responsive--------------------->
+// import React from 'react';
+// import { Link } from "react-router-dom";
+// import { FaXTwitter, FaInstagram, FaFacebook, FaGithub, FaSellsy, FaGifts, FaRegCopyright, } from "react-icons/fa6";
+// import { PiShootingStarBold } from "react-icons/pi";
+// import { FaRegQuestionCircle } from "react-icons/fa";
+
+
+// const ShoppingFooter = () => {
+//   return (
+//     <div>
+//       <div className="flex justify-between bg-green-600 items-center p-2 mt-8">
+//         <div className="w-1/4 items-center border-r-white py-1 px-8">
+//           <h2 className="text-3xl font-bold mb-3 text-white">BAZAAR</h2>
+//           <img
+//             src="https://iconape.com/wp-content/png_logo_vector/app-store-google-play-logo.png"
+//             alt=""
+//             className="w-2/3"
+//           />
+//           <div className="flex gap-5 text-2xl mt-6 cursor-pointer text-white">
+//             <Link to="https://www.X.com/ammarshah1252">
+//               <FaXTwitter className="ftrSocIco" />
+//             </Link>
+//             <Link to="https://www.instagram.com/abu_ammar_003">
+//               <FaInstagram className="ftrSocIco" />
+//             </Link>
+//             <Link to="https://www.facebook.com/ammarshah">
+//               <FaFacebook className="ftrSocIco" />
+//             </Link>
+//             <Link to="https://www.github.com/abuammar003">
+//               <FaGithub  className="ftrSocIco" />
+//             </Link>
+//           </div>
+//         </div>
+//         <div className="flex justify-evenly gap-8 items-center">
+//           <div className="w-1/4 p-6">
+//             <h6 className="text-xl mb-3 text-gray-300 font-bold">Mail Us:</h6>
+//             <p className="text-white text-lg">
+//               Bazaar Internet Private Limited, Old Agra Road Malegaon 423203, <br /> Maharashtra-India <br />{" "}
+//               Telephone: 08180951252 <br /> eMail: ammarshah1252@gmail.com
+//             </p>
+//           </div>
+//           <ul className="w-2/12 ">
+//             <li className="text-xl mb-3 text-gray-300">ABOUT</li>
+//             <li>
+//               <a
+//                 href=""
+//                 className="text-lg p-1 cursor-pointer font-normal text-white"
+//               >
+//                 About Us
+//               </a>
+//             </li>
+//             <li>
+//               <a
+//                 href=""
+//                 className="text-lg p-1 cursor-pointer font-normal text-white"
+//               >
+//                 Contact Us
+//               </a>
+//             </li>
+//             <li>
+//               <a
+//                 href=""
+//                 className="text-lg p-1 cursor-pointer font-normal text-white"
+//               >
+//                 Careers
+//               </a>
+//             </li>
+//             <li>
+//               <a
+//                 href=""
+//                 className="text-lg p-1 cursor-pointer font-normal text-white"
+//               >
+//                 Press
+//               </a>
+//             </li>
+//             <li>
+//               <a
+//                 href=""
+//                 className="text-lg p-1 cursor-pointer font-normal text-white"
+//               >
+//                 Corporate Info
+//               </a>
+//             </li>
+//           </ul>
+//           <ul>
+//             <li className="text-xl mb-3 text-gray-300">HELP</li>
+//             <li>
+//               <a
+//                 href=""
+//                 className="text-lg p-1 cursor-pointer font-normal text-white"
+//               >
+//                 Payments
+//               </a>
+//             </li>
+//             <li>
+//               <a
+//                 href=""
+//                 className="text-lg p-1 cursor-pointer font-normal text-white"
+//               >
+//                 Shipping
+//               </a>
+//             </li>
+//             <li>
+//               <a
+//                 href=""
+//                 className="text-lg p-1 cursor-pointer font-normal text-white"
+//               >
+//                 Cancellations
+//               </a>
+//             </li>
+//             <li>
+//               <a
+//                 href=""
+//                 className="text-lg p-1 cursor-pointer font-normal text-white"
+//               >
+//                 FAQs
+//               </a>
+//             </li>
+//             <li>
+//               <a
+//                 href=""
+//                 className="text-lg p-1 cursor-pointer font-normal text-white"
+//               >
+//                 Report
+//               </a>
+//             </li>
+//           </ul>
+//           <ul>
+//             <li className="text-xl mb-3 text-gray-300"> POLICY</li>
+//             <li>
+//               <a
+//                 href=""
+//                 className="text-lg p-1 cursor-pointer font-normal text-white"
+//               >
+//                 Terms of Use
+//               </a>
+//             </li>
+//             <li>
+//               <a
+//                 href=""
+//                 className="text-lg p-1 cursor-pointer font-normal text-white"
+//               >
+//                 Security
+//               </a>
+//             </li>
+//             <li>
+//               <a
+//                 href=""
+//                 className="text-lg p-1 cursor-pointer font-normal text-white"
+//               >
+//                 Privacy
+//               </a>
+//             </li>
+//             <li>
+//               <a
+//                 href=""
+//                 className="text-lg p-1 cursor-pointer font-normal text-white"
+//               >
+//                 Sitemap
+//               </a>
+//             </li>
+//             <li>
+//               <a
+//                 href=""
+//                 className="text-lg p-1 cursor-pointer font-normal text-white"
+//               >
+//                 Compliance
+//               </a>
+//             </li>
+//           </ul>
+//         </div>
+//       </div>
+//       <div className="flex justify-center gap-12 p-2 bg-green-600 items-center text-white">
+//         <h4 className="flex justify-center gap-2 text-lg font-normal items-center">
+//           <FaSellsy className="fotSitDevIco" />
+//           Become a Seller
+//         </h4>
+//         <h4 className="flex justify-center gap-2 text-lg font-normal items-center">
+//           <PiShootingStarBold className="fotSitDevIco" />
+//           Advertise
+//         </h4>
+//         <h4 className="flex justify-center gap-2 text-lg font-normal items-center">
+//           <FaGifts className="fotSitDevIco" />
+//           Gift Cards
+//         </h4>
+//         <h4 className="flex justify-center gap-2 text-lg font-normal items-center">
+//           <FaRegQuestionCircle className="fotSitDevIco" />
+//           Help Center
+//         </h4>
+//         <h3 className="flex justify-center gap-2 text-lg font-normal items-center">
+//           <FaRegCopyright className="fotSitDevIco" />
+//           2024 AmmarShah- All Right Reserved
+//         </h3>
+//       </div>
+//     </div>
+//   );
+// }
+
+// export default ShoppingFooter ;
+
+
+// <----------------------------Cart without Responsive--------------------->
+// import React from "react";
+// import { Link } from "react-router-dom";
+// import { useCart } from "../../context/CartContext";
+// import { MdDeleteForever } from "react-icons/md";
+
+// const ShoppingCart = () => {
+//   const { cartItems, handleAddToCart, handleRemoveFromCart, cancelOrder } =
+//     useCart();
+//     console.log(cartItems);
+
+//   const calculateTotal = (price, quantity) => {
+//     return price * quantity;
+//   };
+
+//   const calculateItemsTotal = () => {
+//     return cartItems.reduce((total, items) => total + calculateTotal(items.price, items.quantity), 0)
+//   };
+//   const itemsTotal = calculateItemsTotal();
+
+//   const calculateGrandrandTotal = () => {
+//     const deliveryCharge = 5;
+//     return itemsTotal + deliveryCharge;
+//   }
+//   const grandTotal = calculateGrandrandTotal();
+
+  
+//   return (
+//     <div className="min-h:100vh;">
+//       <h1 className="text-3xl mx-3 my-4">Your Products</h1>
+//       <div className="border p-8">
+//         {cartItems.length > 0 ? (
+//           <div className="flex justify-around">
+//             <div className="min-w-[55rem] flex flex-col items-center">
+//               {cartItems.map((item) => (
+//                 <div
+//                   key={item.id}
+//                   className="min-w-[55rem] flex justify-between items-center mb-4 border py-2 px-3"
+//                 >
+//                   <div className="flex items-center justify-between">
+//                     <img
+//                       src={item.thumbnail}
+//                       alt={item.title}
+//                       className="w-32 h-32 mr-4"
+//                     />
+//                     <div>
+//                       <h3 className="text-xl">{item.title}</h3>
+//                       <span className="text-lg">
+//                         ${item.price} x {item.quantity}
+//                       </span>
+//                     </div>
+//                   </div>
+//                   <div className="flex justify-center gap-4 items-center">
+//                     <div className="flex justify-center py-0.5 rounded items-cente bg-green-600">
+//                       <button
+//                         className="px-2 text-lg rounded text-white"
+//                         onClick={() => handleRemoveFromCart(item)}
+//                       >
+//                         -
+//                       </button>
+//                       <h2 className="items-center text-lg px-2 bg-white rounded">
+//                         {item.quantity}
+//                       </h2>
+//                       <button
+//                         className="px-2 text-lg rounded text-white"
+//                         onClick={() => handleAddToCart(item)}
+//                       >
+//                         +
+//                       </button>
+//                     </div>
+//                     <button
+//                       className="border bg-red-500 text-white py-1.5 px-2 rounded"
+//                       onClick={() => cancelOrder(item.id)}
+//                     >
+//                       <MdDeleteForever className="text-xl" />
+//                     </button>
+//                   </div>
+//                 </div>
+//               ))}
+//             </div>
+//             <div className="min-w-[20rem] max-h-[19.3rem] border py-3 px-4 items-center">
+//               <div className="">
+//                 <h1 className="text-3xl text-center font-semibold mt-0">
+//                   Bill Details
+//                 </h1>
+//                 <h2 className="flex justify-between mt-8 text-lg">
+//                   Items Total<span>${itemsTotal.toFixed(2)}</span>
+//                 </h2>
+//                 {/* <h2 className="flex justify-between mt-1 text-lg">Total Products <span>{cartItems.length}</span></h2> */}
+//                 <h2 className="flex justify-between mt-1 text-lg">
+//                   Delivery Charge <span className="text-geen">$5</span>
+//                 </h2>
+//                 <p className="text-sm">Shipping(free for Orders above $999)</p>
+//               </div>
+//               <div className="border-t-2 border-black mt-5 text-xl font-medium">
+//                 <h1 className="flex justify-between mt-4">
+//                   Grand Total<span>${grandTotal.toFixed(2)}</span>
+//                 </h1>
+//                 <button className="flex justify-between w-full bg-green-600 py-2 px-3 rounded mt-5 text-white">
+//                   Check Out <span>${grandTotal.toFixed(2)}</span>
+//                 </button>
+//               </div>
+//             </div>
+//           </div>
+//         ) : (
+//           <div className="flex-col justify-center text-center">
+//             <h3 className="text-2xl items-center font-normal">
+//               Your cart is empty!
+//             </h3>
+//             <div className="ml-32">
+//               <Link to={"/"}>
+//                 <img
+//                   src="https://cdni.iconscout.com/illustration/premium/thumb/empty-cart-illustration-download-in-svg-png-gif-file-formats--shopping-ecommerce-simple-error-state-pack-user-interface-illustrations-6024626.png?f=webp"
+//                   alt=""
+//                   className="max-w-72 items-center justify-center ml-96 cursor-pointer"
+//                 />
+//               </Link>
+//             </div>
+//           </div>
+//         )}
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default ShoppingCart;
