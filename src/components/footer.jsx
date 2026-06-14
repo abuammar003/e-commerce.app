@@ -1,11 +1,15 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import { FaXTwitter, FaInstagram, FaFacebook, FaGithub, FaSellsy, FaGifts, FaRegCopyright, } from "react-icons/fa6";
+import { FaXTwitter, FaInstagram, FaLinkedin , FaGithub, FaSellsy, FaGifts, FaRegCopyright, } from "react-icons/fa6";
 import { PiShootingStarBold } from "react-icons/pi";
 import { FaRegQuestionCircle } from "react-icons/fa";
 
 
 const ShoppingFooter = () => {
+
+  const currYear = new Date().getFullYear();
+
+
   return (
     <div>
       <div className="bg-green-600 items-center p-2 mt-8">
@@ -22,11 +26,11 @@ const ShoppingFooter = () => {
             <Link to="https://www.X.com/ammarshah1252">
               <FaXTwitter className="ftrSocIco" />
             </Link>
-            <Link to="https://www.instagram.com/abu_ammar_003">
+            <Link to="https://www.instagram.com/abuammar_03/">
               <FaInstagram className="ftrSocIco" />
             </Link>
-            <Link to="https://www.facebook.com/ammarshah">
-              <FaFacebook className="ftrSocIco" />
+            <Link to="https://www.linkedin.com/in/abu-ammar-252448284/">
+              <FaLinkedin  className="ftrSocIco" />
             </Link>
             <Link to="https://www.github.com/abuammar003">
               <FaGithub  className="ftrSocIco" />
@@ -199,7 +203,7 @@ const ShoppingFooter = () => {
       </div>
         <h3 className="flex justify-center gap-2 text-lg font-normal items-center mt-4">
           <FaRegCopyright className="fotSitDevIco" />
-          2024 AmmarShah- All Right Reserved
+          {currYear} AmmarShah- All Right Reserved
         </h3>
     </div>
 
