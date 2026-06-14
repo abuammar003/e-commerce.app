@@ -3,7 +3,7 @@ import { useProduct } from "../context/product";
 import ShoppingCard from "../components/card";
 import { useNavigate } from "react-router-dom";
 import { MdOutlineKeyboardDoubleArrowRight  } from "react-icons/md";
-
+ 
 
 export default function Listing() {
   const { products, isLoading, isError} = useProduct();

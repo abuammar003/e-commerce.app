@@ -7,10 +7,11 @@ import ShoppingCart from "./pages/AddToCart/shoppingCart";
 import { CartProvider } from "./context/CartContext";
 import CategoryProducts from "./pages/category";
 import Listing from "./pages/listing";
+import ShoppingFooter from "./components/footer";
 
 const App = () => {
-  return (
-    <>
+  return ( 
+    <>  
       <CartProvider>
       <ShoppingHeader />
         <Routes>
@@ -21,6 +22,9 @@ const App = () => {
           <Route path="/category/:categoryName" element={<CategoryProducts />} /> 
 
         </Routes>
+
+          <ShoppingFooter />
+        
       </CartProvider>
      
     </>

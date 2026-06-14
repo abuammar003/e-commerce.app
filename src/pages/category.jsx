@@ -5,7 +5,7 @@ import ShoppingCard from "../components/card";
 import { MdOutlineKeyboardDoubleArrowLeft } from "react-icons/md";
 
 export default function category(product) {
-  const { categoryName } = useParams();
+  const { categoryName } = useParams(); 
   const { products, isLoading, isError } = useProduct();
   console.log(products);
 

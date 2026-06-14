@@ -6,7 +6,7 @@ import { MdDeleteForever } from "react-icons/md";
 const ShoppingCart = () => {
   const { cartItems, handleAddToCart, handleRemoveFromCart, cancelOrder, checkOut } = useCart();
   console.log(cartItems);
-
+ 
   const calculateTotal = (price, quantity) => {
     return price * quantity;
   }; 

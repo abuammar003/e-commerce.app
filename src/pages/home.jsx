@@ -1,45 +1,14 @@
-// import React from "react";
-// import ShoppingBanner from "../components/banner";
-// import ShoppingCard from "../components/card";
-// import { useProduct } from "../context/product";
-// import { Loader } from "lucide-react";
-// import ShoppingFooter from "../components/footer";
-// import { useCart } from "../context/CartContext";
-
-// const ShoppingHome = () => {
-//   const { products, isLoading, isError } = useProduct();
-//   if (isLoading) <div>Loading...</div>;
-//   if (isError) <div>{isError}</div>;
-
-//   return (
-//     <div>
-//       <ShoppingBanner />
-//       <div>
-//         <div className="max-w-[80rem] mx-auto grid grid-cols-5 gap-6 my-8">
-//           {products.slice(0, 10).map((product) => {
-//             return <ShoppingCard product={product} key={product.id} />;
-//           })}
-//         </div>
-//       </div>
-//       <ShoppingFooter />
-//     </div>
-//   );
-// };
-
-// export default ShoppingHome;
-
 import React, { useEffect } from "react";
 import ShoppingBanner from "../components/banner";
 import ShoppingCard from "../components/card";
 import { useProduct } from "../context/product";
 import { Loader } from "lucide-react";
-import ShoppingFooter from "../components/footer";
 import { useCart } from "../context/CartContext";
 
 const ShoppingHome = () => {
   const { products, isLoading, isError } = useProduct();
 
-  useEffect(() => {
+  useEffect(() => { 
     const prevBtn = document.getElementById("prevBtn");
     const nextBtn = document.getElementById("nextBtn");
     const slider = document.getElementById("product-slider");
@@ -69,14 +38,13 @@ const ShoppingHome = () => {
         <div className="my-8">
           {/* Product Grid */}
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 gap-6">
-            {products.slice(0, 10).map((product) => (
+            {products.map((product) => (
               <ShoppingCard product={product} key={product.id} />
             ))}
           </div>
         </div>
       </div>
 
-      <ShoppingFooter />
     </div>
   );
 };
