@@ -1,0 +1,113 @@
+ * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f5f7f6;
+            color: #222;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 600px;
+            text-align: center;
+            padding: 50px 30px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+        }
+
+        .error-code {
+            font-size: 100px;
+            font-weight: 800;
+            color: #198754;
+            line-height: 1;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        p {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        a {
+            text-decoration: none;
+            padding: 12px 22px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            transition: 0.2s ease;
+        }
+
+        .home-btn {
+            background: #198754;
+            color: white;
+        }
+
+        .home-btn:hover {
+            background: #146c43;
+        }
+
+        .back-btn {
+            border: 1px solid #198754;
+            color: #198754;
+            background: white;
+        }
+
+        .back-btn:hover {
+            background: #198754;
+            color: white;
+        }
+
+        .icon {
+            font-size: 55px;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 500px) {
+
+            .container {
+                padding: 40px 20px;
+            }
+
+            .error-code {
+                font-size: 75px;
+            }
+
+            h1 {
+                font-size: 25px;
+            }
+
+            p {
+                font-size: 14px;
+            }
+
+            .buttons {
+                flex-direction: column;
+            }
+
+            a {
+                width: 100%;
+            }
+        }
