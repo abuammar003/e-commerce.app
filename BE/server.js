@@ -5,7 +5,7 @@ const express = require("express");
 const PORT = process.env.PORT;
 
 const app = express();
-
+   
 app.use(express.json());
 app.set("view engine", "ejs");    //To configure ejs in the File.
 
