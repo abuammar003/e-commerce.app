@@ -12,10 +12,12 @@ const getAllProducts = async (req, res) => {
     try{
         const products = await Products.find();
 
-        res.status(200).json({
-            message: "All Products.",
-            product: products
-        });
+        // res.status(200).json({
+        //     message: "All Products.",
+        //     product: products
+        // });
+
+         res.status(200).json(products);
     
     } catch(err) {
          res.status(400).json({
@@ -28,7 +30,7 @@ const getAllProducts = async (req, res) => {
 // READ Products By Id/Name.
 const getProductByID = async (req, res)=> {
 
-    try{
+    try{ 
         const id = Number(req.params.id);
         
         const findProduct = await Products.findOne({id: id});
@@ -38,11 +40,13 @@ const getProductByID = async (req, res)=> {
                 path.join(__dirname, "../views/404.html")
             );
         }
+
+        res.status(200).json(findProduct);
     
-        res.status(200).json({
-            message: "Product Found Successfully.",
-            product: findProduct
-        });
+        // res.status(200).json({
+        //     message: "Product Found Successfully.",
+        //     product: findProduct
+        // });
     
     } catch(err) {
         res.render(NotFound);

@@ -36,12 +36,14 @@ const ShoppingHome = () => {
       <ShoppingBanner />
       <div className="max-w-screen-xl mx-auto px-4">
         <div className="my-8">
+
           {/* Product Grid */}
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 gap-6">
             {products.map((product) => (
               <ShoppingCard product={product} key={product.id} />
             ))}
           </div>
+          
         </div>
       </div>
 

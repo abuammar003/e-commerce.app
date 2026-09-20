@@ -3,9 +3,11 @@ require('dotenv').config();
 
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
 const PORT = process.env.PORT;
 
 const app = express();
+app.use(cors());
    
 app.use(express.json());
 app.set("view engine", "ejs");    //To configure ejs in the File.
@@ -35,5 +37,5 @@ app.use("/api/products", require("./Routes/Products"));
 
 
 app.listen(PORT, ()=> {
-    console.log(`Server for Bazaar Backend is Running on Port: ${PORT}...`)
+    console.log(`Server for Bazaar Backend is Running on Port: ${PORT}`)
 })

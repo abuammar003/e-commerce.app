@@ -1,30 +1,54 @@
 import axios from "axios";
 import React, { createContext, useContext, useEffect, useState } from "react";
 
-const Context = createContext(null);
+const ProductContext = createContext(null);
 
 const ProductProvider = ({ children }) => {
+
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
+  
+  const fetchProducts = async () => {
+    try {
+      setIsLoading(true);
+      setIsError(false);
+      
+      // const response = await axios.get("https://dummyjson.com/products");     //API taken from Dummy JSON.
 
-  async function fetchProducts() {
-    const response = await axios.get("https://dummyjson.com/products");
-    setProducts(response.data.products)
-    // console.log(response)
-  }
-  useEffect(() => {
-    fetchProducts();
-  }, []);
+          const response = await axios.get(
+              "http://localhost:8000/api/products/"       //API Taking from Backend.
+          );
+
+            setProducts(response.data);
+          
+
+        } catch (error) {
+            console.log(error);
+            setIsError(true);
+
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    useEffect(() => {
+      fetchProducts();
+    }, []);
+
+    console.log(products);
+
 
 
   return (
-    <Context.Provider value={{ products, fetchProducts, isLoading, isError }}>
+    <ProductContext.Provider value={{ products, fetchProducts, isLoading, isError }}>
       {children}
-    </Context.Provider>
+    </ProductContext.Provider>
   );
 };
 
 export default ProductProvider;
 
-export const useProduct = () => useContext(Context);
+// export {ProductContext};
+
+export const useProduct = () => useContext(ProductContext);

@@ -3,7 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import { MdRemoveShoppingCart } from "react-icons/md";
 
-const ShoppingCard = ({ product, filterProductFromCart }) => {
+const ShoppingCard = ({ product, filterProductFromCart }) => { 
+
   const { cartItems, handleAddToCart, handleRemoveFromCart } = useCart();
   const quantity = cartItems.find((item) => item.id === product.id);
   const navigate = useNavigate();
@@ -16,15 +17,15 @@ const ShoppingCard = ({ product, filterProductFromCart }) => {
       <div className="flex flex-col justify-between">
         <div className="flex flex-col items-center">
           <img
-            src={product.thumbnail}
-            alt={product.title}
+            src={product.image}
+            alt={product.name}
             className="h-48 cursor-pointer"
           />
-          <h1 className="text-lg md:text-xl ">{product.title.slice(0, 15)}</h1>
+          <h1 className="text-lg md:text-xl ">{product.name.slice(0, 15)}</h1>
         </div>
         <div className="flex gap-2 items-center justify-center mb-1">
           <span className="text-xl">${product.price}</span>
-          <del className="text-sm">{product.discountPercentage}%</del>
+          {/* <del className="text-sm">{product.discountPercentage}%</del> */}
         </div>
       </div>
 
