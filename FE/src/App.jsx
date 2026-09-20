@@ -8,6 +8,7 @@ import { CartProvider } from "./context/CartContext";
 import CategoryProducts from "./pages/category";
 import Listing from "./pages/listing";
 import ShoppingFooter from "./components/footer";
+// import ScrollToTop from "./components/scrollToTop";
 
 const App = () => {
   return ( 
@@ -15,6 +16,9 @@ const App = () => {
       <CartProvider>
       <ShoppingHeader />
         <Routes>
+
+          {/* <ScrollToTop /> */}
+
           <Route path="/" element={<ShoppingHome />} />
           <Route path="/listing" element={<Listing />} />
           <Route path="/listing/:id" element={<ShoppingDetail />} />
