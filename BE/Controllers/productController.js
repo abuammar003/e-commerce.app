@@ -60,7 +60,7 @@ const getProductByID = async (req, res)=> {
 const postProduct = async (req, res)=> {
 
     try {
-        const {name, price, category, brand, stock, rating, description, image} = req.body;
+        const {name, price, category, brand, stock, rating, description, image, discountPercentage} = req.body;
         const id = Date.now();
         
         const addProduct = await Products.create({
@@ -72,7 +72,8 @@ const postProduct = async (req, res)=> {
             stock,
             rating,
             description,
-            image
+            image,
+            discountPercentage
         });
         
         Products.push(addProduct);
@@ -98,7 +99,7 @@ const updateProduct = async (req, res)=> {
     
     try{
         const id = Number(req.params.id);
-        const {name, price, category, brand, stock, rating, description, image} = req.body;
+        const {name, price, category, brand, stock, rating, description, image, discountPercentage} = req.body;
 
         const updatedProduct = await Products.findOneAndUpdate(
             {id: id},
@@ -109,7 +110,8 @@ const updateProduct = async (req, res)=> {
             {stock: stock},
             {rating: rating},
             {description: description},
-            {image: image}
+            {image: image},
+            {discountPercentage: discountPercentage}
         );
 
         if(!findProduct) {
