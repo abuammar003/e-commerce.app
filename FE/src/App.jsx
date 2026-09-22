@@ -1,12 +1,12 @@
 import { Route, Routes } from "react-router";
-import ShoppingHome from "./pages/Home";
-import ShoppingHeader from "./components/Header";
-import ShoppingDetail from "./pages/Detail";
-import ShoppingCart from "./pages/AddToCart/ShoppingCart";
-import { CartProvider } from "./context/CartContext";
-import CategoryProducts from "./pages/Category";
-import Listing from "./pages/Listing";
-import ShoppingFooter from "./components/Footer";
+import ShoppingHome from "./pages/home";
+import ShoppingHeader from "./components/header";
+import ShoppingDetail from "./pages/detail";
+import ShoppingCart from "./pages/AddToCart/shoppingCart";
+import { CartProvider } from "./context/cartContext";
+import CategoryProducts from "./pages/category";
+import Listing from "./pages/listing";
+import ShoppingFooter from "./components/footer";
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 

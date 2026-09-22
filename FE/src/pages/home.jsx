@@ -1,11 +1,11 @@
 import { useEffect } from "react";
-import ShoppingBanner from "../components/Banner";
-import ShoppingCard from "../components/Card";
+import ShoppingBanner from "../components/banner";
+import ShoppingCard from "../components/card";
 import { useProduct } from "../context/product";
 
 
 const ShoppingHome = () => {
-  
+
   const { products, isLoading, isError } = useProduct();
 
   useEffect(() => { 

@@ -1,4 +1,4 @@
-import { useCart } from "../../context/CartContext";
+import { useCart } from "../../context/cartContext";
 import { MdDeleteForever } from "react-icons/md";
 import EmptyCartMessage from "../../components/EmptyCartMsg";
 

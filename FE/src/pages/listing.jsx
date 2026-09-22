@@ -1,6 +1,6 @@
 import React from "react";
 import { useProduct } from "../context/product";
-import ShoppingCard from "../components/Card";
+import ShoppingCard from "../components/card";
 import { useNavigate } from "react-router-dom";
 import { MdOutlineKeyboardDoubleArrowRight  } from "react-icons/md";
  
