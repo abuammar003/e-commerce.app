@@ -17,7 +17,10 @@ const ProductProvider = ({ children }) => {
       // const response = await axios.get("https://dummyjson.com/products");     //API taken from Dummy JSON.
 
           const response = await axios.get(
-              "http://localhost:8000/api/products/"       //API Taking from Backend.
+              // "http://localhost:8000/api/products/"       //API Taking from Backend.
+              
+                //API Taking from Backend (Deployed on Render).
+              "https://bazaar-backend-u6j4.onrender.com/api/products/"     
           );
 
             setProducts(response.data);
@@ -36,7 +39,7 @@ const ProductProvider = ({ children }) => {
       fetchProducts();
     }, []);
 
-    console.log(products);
+    // console.log(products);
 
 
 
