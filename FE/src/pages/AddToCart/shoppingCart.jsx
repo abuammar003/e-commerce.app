@@ -37,9 +37,9 @@ const ShoppingCart = () => {
               {cartItems.map((item) => (
                 <div key={item.id} className="flex justify-between items-center mb-4 border py-2 px-3 w-full">
                   <div className="flex items-center">
-                    <img src={item.thumbnail} alt={item.title} className="w-24 h-24 sm:w-32 sm:h-32 mr-4" />
+                    <img src={item.image} alt={item.name} className="w-20 h-20 sm:w-28 sm:h-28 mr-4" />
                     <div>
-                      <h3 className="text-lg max-sm:text-lg sm:text-xl">{item.title}</h3>
+                      <h3 className="text-lg max-sm:text-lg sm:text-xl">{item.name}</h3>
                       <span className="text-sm sm:text-lg">${item.price} x {item.quantity}</span>
                     </div>
                   </div>
