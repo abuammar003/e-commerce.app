@@ -84,7 +84,7 @@ const ShoppingFooter = () => {
                     BAZAAR
                   </h2>
                   <p className="text-[11px] tracking-widest font-bold">
-                    SHOP SMART
+                    ONLINE STORE
                   </p>
                 </div>
               </div>

@@ -50,7 +50,7 @@ const ShoppingHeader = () => {
                 BAZAAR
               </h1>
               <p className="text-[10px] tracking-widest text-green-600 font-semibold -mt-1">
-                SHOP SMART
+                ONLINE STORE
               </p>
             </div>
           </NavLink>
