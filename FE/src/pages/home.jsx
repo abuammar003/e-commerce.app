@@ -1,9 +1,8 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import ShoppingBanner from "../components/Banner";
 import ShoppingCard from "../components/Card";
 import { useProduct } from "../context/product";
-import { Loader } from "lucide-react";
-import { useCart } from "../context/CartContext";
+
 
 const ShoppingHome = () => {
   const { products, isLoading, isError } = useProduct();
