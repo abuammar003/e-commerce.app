@@ -1,23 +1,33 @@
-import React from "react";
 import { Route, Routes } from "react-router";
-import ShoppingHome from "./pages/home";
-import ShoppingHeader from "./components/header";
-import ShoppingDetail from "./pages/detail";
-import ShoppingCart from "./pages/AddToCart/shoppingCart";
+import ShoppingHome from "./pages/Home";
+import ShoppingHeader from "./components/Header";
+import ShoppingDetail from "./pages/Detail";
+import ShoppingCart from "./pages/AddToCart/ShoppingCart";
 import { CartProvider } from "./context/CartContext";
-import CategoryProducts from "./pages/category";
-import Listing from "./pages/listing";
-import ShoppingFooter from "./components/footer";
-// import ScrollToTop from "./components/scrollToTop";
+import CategoryProducts from "./pages/Category";
+import Listing from "./pages/Listing";
+import ShoppingFooter from "./components/Footer";
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
+
 
 const App = () => {
   return ( 
     <>  
+
+      {/* <BrowserRouter> */}
+    
       <CartProvider>
       <ShoppingHeader />
+
+        <ToastContainer 
+          position="top-center"
+          autoClose={3000}
+          theme="light"
+        />
+
         <Routes>
 
-          {/* <ScrollToTop /> */}
 
           <Route path="/" element={<ShoppingHome />} />
           <Route path="/listing" element={<Listing />} />
@@ -30,6 +40,8 @@ const App = () => {
           <ShoppingFooter />
         
       </CartProvider>
+      
+        {/* </BrowserRouter> */}
       
     </>
   );

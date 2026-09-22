@@ -1,10 +1,10 @@
-import React from "react";
+
 import { useParams } from "react-router";
 import { useProduct } from "../../context/product";
 import { useCart } from "../AddToCart/CartContext";
-import ShoppingCard from "../../components/card";
+import ShoppingCard from "../../components/Card";
 
-const AddToCart = () => {
+const AddToCart = () => { 
   const { id } = useParams();
   const { products } = useProduct();
   const { addToCart } = useCart(); 

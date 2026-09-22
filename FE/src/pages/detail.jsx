@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router";
 import { useProduct } from "../context/product";
-import ShoppingCard from "../components/card";
+import ShoppingCard from "../components/Card";
 import { RxCrossCircled } from "react-icons/rx";
 
 

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useProduct } from "../context/product";
-import ShoppingCard from "../components/card";
+import ShoppingCard from "../components/Card";
 import { MdOutlineKeyboardDoubleArrowLeft } from "react-icons/md";
 
 export default function category(product) {

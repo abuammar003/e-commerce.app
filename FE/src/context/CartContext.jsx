@@ -1,4 +1,6 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
+import { toast } from "react-toastify";
+
 
 const CartContext = createContext();
 
@@ -39,16 +41,18 @@ export const CartProvider = ({ children }) => {
       );
     } else {
       setCartItems(cartItems.filter((item) => item.id !== product.id));
+      toast.error(`Product is Removed from Cart.`);
     }
   };
 
     const cancelOrder = (id) => {
       setCartItems((prev) => prev.filter((item) => item.id !== id));
-      alert("Cancel Order!");
+      // alert("Cancel Order!");
+        toast.error(`Product is Removed from Cart.`);
     };
 
-    const checkOut = () => {
-      alert("Thanks for Order");
+    const checkOut = () => { 
+      toast.success("Thanks for Order! Your Order will Placed Soon.");
       setCartItems([]);
     }
 

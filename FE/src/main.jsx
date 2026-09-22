@@ -6,13 +6,15 @@ import ProductProvider from "./context/product.jsx";
 import ScrollToTop from "./components/scrollToTop.jsx";
 
 createRoot(document.getElementById("root")).render(
-  <BrowserRouter>
+    <BrowserRouter>
+
+
 
     <ProductProvider>
       <ScrollToTop />
       <App />
     </ProductProvider>
 
-  </BrowserRouter>
+   </BrowserRouter> 
 );
 

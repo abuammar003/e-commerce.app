@@ -1,7 +1,7 @@
-import React from "react"; 
-import { Link } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
 import { MdDeleteForever } from "react-icons/md";
+import EmptyCartMessage from "../../components/EmptyCartMsg";
+
 
 const ShoppingCart = () => {
   const { cartItems, handleAddToCart, handleRemoveFromCart, cancelOrder, checkOut } = useCart();
@@ -28,8 +28,11 @@ const ShoppingCart = () => {
 
   return (
     <div className="min-h-screen py-8">
+
       <h1 className="text-3xl mx-3 mb-4">Your Products</h1>
+      
       <div className="border p-4 sm:p-8">
+
         {cartItems.length > 0 ? (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Cart Items Section */}
@@ -59,12 +62,14 @@ const ShoppingCart = () => {
                         +
                       </button>
                     </div>
+
                     <button
                       className="border bg-red-500 text-white py-1.5 px-2 rounded"
                       onClick={() => cancelOrder(item.id)}
                     >
                       <MdDeleteForever className="text-xl" />
                     </button>
+
                   </div>
                 </div>
               ))}
@@ -94,18 +99,12 @@ const ShoppingCart = () => {
             </div>
           </div>
         ) : (
-          <div className="flex flex-col items-center justify-center text-center">
-            <h3 className="text-2xl font-normal">Your cart is empty!</h3>
-            <Link to={"/"} className="mt-4">
-              <img
-                src="https://cdni.iconscout.com/illustration/premium/thumb/empty-cart-illustration-download-in-svg-png-gif-file-formats--shopping-ecommerce-simple-error-state-pack-user-interface-illustrations-6024626.png?f=webp"
-                alt="Empty Cart"
-                className="max-w-xs mx-auto cursor-pointer"
-              />
-            </Link>
-          </div>
+
+          <EmptyCartMessage />
+        
         )}
       </div>
+    
     </div>
   );
 };
