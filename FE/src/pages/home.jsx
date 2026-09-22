@@ -5,6 +5,7 @@ import { useProduct } from "../context/product";
 
 
 const ShoppingHome = () => {
+  
   const { products, isLoading, isError } = useProduct();
 
   useEffect(() => { 
