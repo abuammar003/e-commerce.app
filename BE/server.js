@@ -36,6 +36,6 @@ app.use("/api/products", require("./Routes/Products"));
 
 
 
-app.listen(PORT, ()=> {
+app.listen(PORT, "0.0.0.0", ()=> {
     console.log(`Server for Bazaar Backend is Running on Port: ${PORT}`)
 })
