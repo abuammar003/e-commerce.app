@@ -3,7 +3,7 @@ import ShoppingHome from "./pages/home";
 import ShoppingHeader from "./components/header";
 import ShoppingDetail from "./pages/detail";
 import ShoppingCart from "./pages/AddToCart/shoppingCart";
-import { CartProvider } from "./context/cartContext";
+import { CartProvider } from "./context/CartContext";
 import CategoryProducts from "./pages/category";
 import Listing from "./pages/listing";
 import ShoppingFooter from "./components/footer";

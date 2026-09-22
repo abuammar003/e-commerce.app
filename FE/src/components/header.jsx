@@ -7,7 +7,7 @@ import {
   FiShoppingBag,
 } from "react-icons/fi";
 import { IoMdCart } from "react-icons/io";
-import { useCart } from "../context/cartContext";
+import { useCart } from "../context/CartContext";
 
 const ShoppingHeader = () => {
   const { cartItems } = useCart();
