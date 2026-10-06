@@ -27,9 +27,9 @@ const ShoppingHome = () => {
     };
   }, []);
 
-  if (isLoading) <div>Loading...</div>;
+  if (isLoading) <div className="text-4xl text-center py-8 text-black">Loading...</div>;
   if (isError)
-    return <div className="text-center py-8 text-red-500">{isError}</div>;
+    return <div className="text-4xl text-center py-8 text-red-500">{isError}</div>;
 
   return (
     <div>
