@@ -7,9 +7,9 @@ import { RxCrossCircled } from "react-icons/rx";
 
 const ShoppingDetail = () => {
   const { id } = useParams();
-  console.log(id);
+  // console.log(id);
   const { products } = useProduct(); 
-  console.log(products[id]);
+  // console.log(products[id]);
 
   const productId = Number(id);
 

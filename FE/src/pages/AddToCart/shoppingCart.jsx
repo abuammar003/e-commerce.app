@@ -18,7 +18,7 @@ const ShoppingCart = () => {
   const itemsTotal = calculateItemsTotal();
 
   const calculateGrandTotal = () => {
-    const deliveryCharge = 5;
+    const deliveryCharge = 50;
     return itemsTotal + deliveryCharge;
   };
 
@@ -43,7 +43,7 @@ const ShoppingCart = () => {
                     <img src={item.image} alt={item.name} className="w-20 h-20 sm:w-28 sm:h-28 mr-4" />
                     <div>
                       <h3 className="text-lg max-sm:text-lg sm:text-xl">{item.name}</h3>
-                      <span className="text-sm sm:text-lg">${item.price} x {item.quantity}</span>
+                      <span className="text-sm sm:text-lg">₹{item.price} x {item.quantity}</span>
                     </div>
                   </div>
                   <div className="flex gap-4 max-sm:flex-col items-center">
@@ -79,21 +79,21 @@ const ShoppingCart = () => {
             <div className="min-w-[15rem] sm:min-w-[20rem] max-h-[19.3rem] sm:max-h-[20.5rem] bg-white p-4 border rounded-lg">
               <h1 className="text-3xl text-center font-semibold">Bill Details</h1>
               <h2 className="flex justify-between mt-4 text-lg">
-                Items Total <span>${itemsTotal.toFixed(2)}</span>
+                Items Total <span>₹{itemsTotal.toFixed(2)}</span>
               </h2>
               <h2 className="flex justify-between mt-2 text-lg">
-                Delivery Charge <span className="text-green-600">$5</span>
+                Delivery Charge <span className="text-green-600">₹50</span>
               </h2>
-              <p className="text-sm mt-1">Shipping (free for orders above $999)</p>
+              <p className="text-sm mt-1">Shipping (free for orders above ₹9999)</p>
 
               <div className="border-t-2 border-black mt-5 text-xl font-medium">
                 <h1 className="flex justify-between mt-4">
-                  Grand Total <span>${grandTotal.toFixed(2)}</span>
+                  Grand Total <span>₹{grandTotal.toFixed(2)}</span>
                 </h1>
                 <button className="w-full bg-green-600 py-2 px-3 rounded mt-5 text-white text-lg"
                   onClick={checkOut}
                 >
-                  Check Out <span>${grandTotal.toFixed(2)}</span>
+                  Check Out <span>₹{grandTotal.toFixed(2)}</span>
                 </button>
               </div>
             </div>

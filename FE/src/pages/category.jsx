@@ -12,13 +12,16 @@ export default function category(product) {
   const filteredProduct = products.filter((p) => {
     return p.category === categoryName;
   });
+
+
   function goBack() {
     window.history.back();
   }
+
   // const navigate = useNavigate();
   if (isLoading) <div>Loading...</div>;
 
-  console.log(filteredProduct);
+  // console.log(filteredProduct);
 
   useEffect(() => {
     window.scroll(0, 1);
@@ -34,6 +37,7 @@ export default function category(product) {
           <MdOutlineKeyboardDoubleArrowLeft />
         </h3>
       </div>
+      
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-5 gap-6">
         {filteredProduct.map((product) => {
           const filteredProduct = products.find(

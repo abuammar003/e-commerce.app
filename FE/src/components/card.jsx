@@ -73,8 +73,14 @@ const ShoppingCard = ({ product }) => {
           {product.name}
         </h2>
 
+        {/* PRICE */}
+        <div className="flex items-center gap-2 mt-0 mb-0 flex-wrap">
+          <span className="text-xl font-bold text-gray-900">₹{product.price}</span>
+        </div>
+
+
         {/* RATING */}
-        <div className="flex items-center gap-1 mt-1">
+        <div className="flex items-center gap-1 mt-1.5 mb-2">
           <div className="flex items-center gap-1 bg-green-600 text-white px-1.5 py-0.5 rounded text-xs font-semibold">
             <span>{product.rating}</span>
             <FiStar className="fill-current text-[11px]" />
@@ -85,24 +91,7 @@ const ShoppingCard = ({ product }) => {
           </span>
         </div>
 
-        {/* PRICE */}
-        <div className="flex items-center gap-2 mt-3 flex-wrap">
-          {/* <span className="text-xl font-bold text-gray-900">
-            ${discountedPrice.toFixed(2)}
-          </span> */}
-
-          {/* {product.discountPercentage > 0 && (
-            <>
-              <del className="text-sm text-gray-400">
-                ${Number(product.price).toFixed(2)}
-              </del>
-
-              <span className="text-xs font-semibold text-green-600">
-                Save {Math.round(product.discountPercentage)}%
-              </span>
-            </>
-          )} */}
-        </div>
+       
 
         {/* STOCK */}
         {/* <div className="mt-2 mb-2">
