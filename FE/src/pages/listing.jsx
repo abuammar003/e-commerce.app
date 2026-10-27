@@ -3,6 +3,7 @@ import { useProduct } from "../context/product";
 import ShoppingCard from "../components/card";
 import { useNavigate } from "react-router-dom";
 import { MdOutlineKeyboardDoubleArrowRight  } from "react-icons/md";
+import LazyLoader from "../components/lazyLoader";
  
 
 export default function Listing() {
@@ -14,11 +15,16 @@ export default function Listing() {
   const navigate = useNavigate();
  
   const categoryList = [...new Set(filterCategory)];
-  if (isLoading) <div>Loading...</div>;
+  // if (isLoading) <div>Loading...</div>;
   if (isError) <div>{isError}</div>;
 
   return (
     <div>
+
+      {isLoading && 
+        <LazyLoader />
+      }
+
       {categoryList.map((category) => {
         return (
           <div key={category} className="py-8 px-6 border-b-8">
