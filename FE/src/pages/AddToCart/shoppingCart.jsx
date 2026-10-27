@@ -1,11 +1,15 @@
+import { useState } from "react";
 import { useCart } from "../../context/CartContext";
 import { MdDeleteForever } from "react-icons/md";
 import EmptyCartMessage from "../../components/EmptyCartMsg";
+import CheckoutPopup from "../../components/checkOutPopup";
 
 
 const ShoppingCart = () => {
   const { cartItems, handleAddToCart, handleRemoveFromCart, cancelOrder, checkOut } = useCart();
   console.log(cartItems);
+
+  const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
  
   const calculateTotal = (price, quantity) => {
     return price * quantity;
@@ -49,14 +53,14 @@ const ShoppingCart = () => {
                   <div className="flex gap-4 max-sm:flex-col items-center">
                     <div className="flex justify-center py-0.5 rounded bg-green-600">
                       <button
-                        className="px-2 text-lg rounded text-white"
+                        className="px-3 text-lg rounded text-white"
                         onClick={() => handleRemoveFromCart(item)}
                       >
                         -
                       </button>
                       <h2 className="items-center text-lg px-2 bg-white rounded">{item.quantity}</h2>
                       <button
-                        className="px-2 text-lg rounded text-white"
+                        className="px-3 text-lg rounded text-white"
                         onClick={() => handleAddToCart(item)}
                       >
                         +
@@ -90,11 +94,21 @@ const ShoppingCart = () => {
                 <h1 className="flex justify-between mt-4">
                   Grand Total <span>₹{grandTotal.toFixed(2)}</span>
                 </h1>
-                <button className="w-full bg-green-600 py-2 px-3 rounded mt-5 text-white text-lg"
+                {/* <button className="w-full bg-green-600 py-2 px-3 rounded mt-5 text-white text-lg"
                   onClick={checkOut}
                 >
                   Check Out <span>₹{grandTotal.toFixed(2)}</span>
+                </button> */}
+
+                <button
+                  type="button"
+                  onClick={() => setIsCheckoutOpen(true)}
+                  disabled={cartItems.length === 0}
+                  className="mt-5 w-full rounded-xl bg-green-600 px-4 py-3 text-lg font-semibold text-white transition                hover:bg-green-700 disabled:cursor-not-allowed disabled:bg-gray-300"
+                >
+                  Checkout · ₹{grandTotal.toFixed(2)}
                 </button>
+
               </div>
             </div>
           </div>
@@ -103,6 +117,14 @@ const ShoppingCart = () => {
           <EmptyCartMessage />
         
         )}
+
+        {/* Checkout Popup */}
+        <CheckoutPopup
+          isOpen={isCheckoutOpen}
+          onClose={() => setIsCheckoutOpen(false)}
+          totalAmount={grandTotal}
+        />
+
       </div>
     
     </div>
