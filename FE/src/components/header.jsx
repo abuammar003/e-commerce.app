@@ -116,25 +116,7 @@ const handleSearch = (value) => {
       </div>
 
 
-      {/* MOBILE SEARCH */}
-      <div className="lg:hidden pb-4">
-        <div className="relative w-full">
-          <FiSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-lg" />
-
-          <input
-            type="search"
-            value={searchQuery}
-            onChange={(e) => handleSearch(e.target.value)}
-            onFocus={() => {
-              if (location.pathname !== "/search") {
-                navigate(`/search${searchQuery ? `?q=${encodeURIComponent(searchQuery)}` : ""}`);
-              }
-            }}
-            placeholder="Search products..."
-            className="w-full h-11 pl-11 pr-4 rounded-full bg-gray-100 border border-transparent outline-none text-sm text-gray-700 placeholder-gray-400 focus:bg-white focus:border-green-500 focus:ring-2 focus:ring-green-100 transition-all duration-200"
-          />
-        </div>
-      </div>
+      
 
 
           {/* RIGHT SIDE */}
