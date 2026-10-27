@@ -95,29 +95,31 @@ const handleSearch = (value) => {
           </nav>
 
 
-       {/* DESKTOP SEARCH */}
-      <div className="hidden lg:flex flex-1 max-w-xl">
-        <div className="relative w-full">
-          <FiSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-lg" />
 
-          <input
-            type="search"
-            value={searchQuery}
-            onChange={(e) => handleSearch(e.target.value)}
-            onFocus={() => {
-              if (location.pathname !== "/search") {
-                navigate(`/search${searchQuery ? `?q=${encodeURIComponent(searchQuery)}` : ""}`);
-              }
-            }}
-            placeholder="Search products, brands and categories..."
-            className="w-full h-11 pl-11 pr-4 rounded-full bg-gray-100 border border-transparent outline-none text-sm text-gray-700 placeholder-gray-400 transition-all duration-200 focus:bg-white focus:border-green-500 focus:ring-2 focus:ring-green-100"
-          />
+      {/* DESKTOP SEARCH */}
+        <div className="hidden min-w-0 flex-1 max-w-xl md:flex">
+          <div className="relative w-full">
+            <FiSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-lg" />
+
+            <input
+              type="search"
+              value={searchQuery}
+              onChange={(e) => handleSearch(e.target.value)}
+              onFocus={() => {
+                if (location.pathname !== "/search") {
+                  navigate(
+                    `/search${searchQuery ? `?q=${encodeURIComponent(searchQuery)}` : ""}`
+                  );
+                }
+              }}
+              placeholder="Search products, brands and categories..."
+              className="h-10 w-full rounded-full border border-transparent bg-gray-100 pl-11 pr-4 text-sm text-gray-700 outline-none transition-all duration-200 placeholder:text-gray-400 focus:border-green-500 focus:bg-white focus:ring-2 focus:ring-green-100 sm:h-11"
+            />
+          </div>
         </div>
-      </div>
 
 
-      
-
+     
 
           {/* RIGHT SIDE */}
           <div className="flex items-center gap-4">
@@ -160,17 +162,33 @@ const handleSearch = (value) => {
         </div>
 
         {/* ================= MOBILE SEARCH ================= */}
-        <div className="lg:hidden pb-4">
-          <div className="relative w-full">
-            <FiSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-lg" />
+          <div className="pb-4 md:hidden">
+            <div className="relative w-full">
+              <FiSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-lg" />
 
-            <input
-              type="text"
-              placeholder="Search products..."
-              className="w-full h-11 pl-11 pr-4 rounded-full bg-gray-100 border border-transparent outline-none text-sm text-gray-700 placeholder-gray-400 focus:bg-white focus:border-green-500 focus:ring-2 focus:ring-green-100 transition-all duration-200"
-            />
+              <input
+                type="search"
+                value={searchQuery}
+                onChange={(e) => handleSearch(e.target.value)}
+                onFocus={() => {
+                  if (location.pathname !== "/search") {
+                    navigate(
+                      `/search${
+                      searchQuery
+                        ? `?q=${encodeURIComponent(searchQuery)}`
+                        : ""
+                      }`
+                   );
+                  }
+                }}
+                placeholder="Search products, brands and categories..."
+                aria-label="Search products"
+                className="h-11 w-full rounded-full border border-transparent bg-gray-100 pl-11 pr-4 text-sm text-gray-700         outline-none transition-all duration-200 placeholder:text-gray-400 focus:border-green-500 focus:bg-white         focus:ring-2 focus:ring-green-100"
+              />
           </div>
         </div>
+
+
       </div>
 
       {/* ================= MOBILE MENU ================= */}
