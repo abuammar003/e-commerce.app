@@ -7,12 +7,12 @@ const ProductProvider = ({ children }) => {
 
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [isError, setIsError] = useState(false);
+  const [isError, setIsError] = useState("");
   
   const fetchProducts = async () => {
     try {
-      // setIsLoading(true);
-      setIsError(false);
+      setIsLoading(true);
+      setIsError(null);
       
       // const response = await axios.get("https://dummyjson.com/products");     //API taken from Dummy JSON.
 

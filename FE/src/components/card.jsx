@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
+import AddToCartButton from "../components/addToCartButton"
 import {
   FiHeart,
   FiShoppingCart,
@@ -107,69 +108,18 @@ const ShoppingCard = ({ product }) => {
         </div> */}
 
         {/* ================= CART BUTTON ================= */}
-        <div className="mt-auto">
+          <div className="flex justify-center items-center mt-2"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <AddToCartButton
+              product={product}
+              quantity={quantity}
+              onAdd={handleAddToCart}
+              onRemove={handleRemoveFromCart}
+            />
+          </div>
 
-          {quantity?.quantity > 0 ? (
-            <div
-              className="flex items-center justify-between border border-green-600
-              rounded-xl overflow-hidden h-11"
-            >
-              {/* MINUS */}
-              <button
-                className="w-12 h-full flex items-center justify-center
-                bg-green-600 text-white hover:bg-green-700 transition"
-                onClick={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  handleRemoveFromCart(product);
-                }}
-              >
-                <FiMinus />
-              </button>
 
-              {/* QUANTITY */}
-              <span className="flex-1 text-center font-bold text-gray-800">
-                {quantity.quantity}
-              </span>
-
-              {/* PLUS */}
-              <button
-                className="w-12 h-full flex items-center justify-center
-                bg-green-600 text-white hover:bg-green-700 transition"
-                onClick={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  handleAddToCart(product);
-                }}
-              >
-                <FiPlus />
-              </button>
-            </div>
-          ) : (
-            <button
-              disabled={product.stock <= 0}
-              className={`w-full h-11 rounded-xl flex items-center justify-center
-              gap-2 font-semibold transition-all duration-200
-              ${
-                product.stock > 0
-                  ? "bg-green-600 text-white hover:bg-green-700 hover:shadow-md"
-                  : "bg-gray-200 text-gray-400 cursor-not-allowed"
-              }`}
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-
-                if (product.stock > 0) {
-                  handleAddToCart(product);
-                }
-              }}
-            >
-              <FiShoppingCart className="text-lg" />
-
-              {product.stock > 0 ? "Add to Cart" : "Out of Stock"}
-            </button>
-          )}
-        </div>
       </div>
     </div>
   );
