@@ -9,6 +9,7 @@ import Listing from "./pages/listing";
 import ShoppingFooter from "./components/footer";
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
+import Search from "./pages/search";
 
 
 const App = () => {
@@ -32,6 +33,7 @@ const App = () => {
           <Route path="/" element={<ShoppingHome />} />
           <Route path="/listing" element={<Listing />} />
           <Route path="/listing/:id" element={<ShoppingDetail />} />
+          <Route path="/search" element={<Search />} />
           <Route path="/cart" element={<ShoppingCart />} />
           <Route path="/category/:categoryName" element={<CategoryProducts />} /> 
 
