@@ -7,7 +7,7 @@ const cors = require("cors");
 const PORT = process.env.PORT;
 
 const app = express();
-app.use(cors());
+app.use(cors()); 
    
 app.use(express.json());
 app.set("view engine", "ejs");    //To configure ejs in the File.

@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import ShoppingBanner from "../components/banner";
 import ShoppingCard from "../components/card";
 import { useProduct } from "../context/product";
+import LazyLoader from "../components/lazyLoader";
 
 
 const ShoppingHome = () => {
@@ -27,9 +28,13 @@ const ShoppingHome = () => {
     };
   }, []);
 
-  if (isLoading) <div className="text-4xl text-center py-8 text-black">Loading...</div>;
-  if (isError)
+  // if (isLoading) {
+  //   return <div className="text-4xl text-center py-8 text-black">Loading...</div>;
+  // }
+
+  if (isError) {
     return <div className="text-4xl text-center py-8 text-red-500">{isError}</div>;
+  }
 
   return (
     <div>
@@ -37,6 +42,11 @@ const ShoppingHome = () => {
       <div className="max-w-screen-xl mx-auto px-4">
         <div className="my-8">
 
+          {isLoading && 
+            <LazyLoader />
+          }
+
+          
           {/* Product Grid */}
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 gap-6">
             {products.map((product) => (
